@@ -163,6 +163,17 @@ export const practices: Practice[] = [
     related: ["dispute-resolution", "regulatory-compliance"],
   },
   {
+    slug: "entertainment-law",
+    name: "Entertainment Law",
+    summary: "Music, film, talent and live events: the deals and disputes behind Nigeria's creative industries.",
+    overview: [
+      "We advise artists, producers, labels, studios, managers and brands across music, film, television and live entertainment, from first contracts to international distribution deals.",
+      "We negotiate recording, publishing and distribution agreements, protect rights under the Copyright Act 2022, and resolve royalty and contract disputes, so creative work earns what it should at home and abroad.",
+    ],
+    services: ["Recording, publishing and distribution agreements", "Artist and talent management contracts", "Film and TV production, financing and distribution", "Brand endorsements and image rights", "Concerts, tours and live events", "Royalty and copyright disputes"],
+    related: ["intellectual-property", "technology-media-telecoms", "dispute-resolution"],
+  },
+  {
     slug: "intellectual-property",
     name: "Intellectual Property",
     summary: "Brand protection, IP infringement claims, patents, copyright and technology transfer.",
@@ -170,7 +181,7 @@ export const practices: Practice[] = [
       "We protect and enforce clients' trade marks, patents, designs and copyright, and register technology transfer agreements with NOTAP.",
     ],
     services: ["Trade mark and patent prosecution", "Anti-counterfeiting", "IP infringement and litigation", "Copyright and media", "NOTAP registrations", "IP portfolio strategy"],
-    related: ["technology-media-telecoms", "dispute-resolution"],
+    related: ["technology-media-telecoms", "entertainment-law", "dispute-resolution"],
   },
   {
     slug: "restructuring-insolvency",

@@ -35,7 +35,7 @@ export function SpecialistFinder() {
           onChange={(e) => setQ(e.target.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => setTimeout(() => setFocused(false), 150)}
-          placeholder="e.g. IP infringement or property & conveyancing"
+          placeholder="e.g. entertainment law or property & conveyancing"
           autoComplete="off"
           role="combobox"
           aria-controls={listId}
