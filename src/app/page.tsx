@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import ladyJustice from "../../public/images/lady-justice.jpg";
 import { LogoMark, LogoSpin } from "@/components/Logo";
 import { SpecialistFinder } from "@/components/SpecialistFinder";
 import { CtaBand, InsightCard, SectionHeading } from "@/components/ui";
@@ -77,24 +79,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Practice areas */}
-      <section className="container-x py-16 sm:py-24">
-        <SectionHeading eyebrow="Expertise" title={<>Legal advice for <span className="text-navy-700">every</span> part of business and life.</>} action={{ label: `All ${practices.length} practice areas`, href: "/practice-areas" }} />
-        <ul className="mt-10 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p) => (
-            <li key={p.slug} className="group relative bg-white p-6 transition hover:bg-navy-50/60 sm:p-8">
-              <div data-reveal>
-                <h3 className="font-semibold tracking-tight text-2xl text-navy-900 sm:text-[1.75rem]">
-                  <Link href={`/practice-areas/${p.slug}`} className="after:absolute after:inset-0">
-                    {p.name}
-                  </Link>
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{p.summary}</p>
-                <ArrowRight className="mt-6 text-navy-900 transition group-hover:translate-x-1" />
-              </div>
-            </li>
-          ))}
-        </ul>
+      {/* Practice areas, over a fixed background photo. clip-path confines the fixed
+          layer to this section and, unlike background-attachment: fixed, works on iOS. */}
+      <section className="relative isolate bg-white [clip-path:inset(0)]">
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+          <Image src={ladyJustice} alt="" fill sizes="100vw" placeholder="blur" quality={70} className="object-cover object-[50%_30%] opacity-[0.24]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
+        </div>
+        <div className="container-x py-16 sm:py-24">
+          <SectionHeading eyebrow="Expertise" title={<>Legal advice for <span className="text-navy-700">every</span> part of business and life.</>} action={{ label: `All ${practices.length} practice areas`, href: "/practice-areas" }} />
+          <ul className="mt-10 grid overflow-hidden rounded-sm border-t border-l border-line sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((p) => (
+              <li key={p.slug} className="group relative border-r border-b border-line bg-white/85 p-6 transition hover:bg-white sm:p-8">
+                <div data-reveal>
+                  <h3 className="font-semibold tracking-tight text-2xl text-navy-900 sm:text-[1.75rem]">
+                    <Link href={`/practice-areas/${p.slug}`} className="after:absolute after:inset-0">
+                      {p.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">{p.summary}</p>
+                  <ArrowRight className="mt-6 text-navy-900 transition group-hover:translate-x-1" />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Promise */}

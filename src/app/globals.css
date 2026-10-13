@@ -343,3 +343,42 @@ html.reveal-ready [data-reveal="iris"].is-visible {
     clip-path: circle(110% at 50% 30%);
   }
 }
+
+/* Cookie banner: slides up on arrival, fades down on dismiss. */
+@media (prefers-reduced-motion: no-preference) {
+  .cookie-banner {
+    animation: cookie-in 0.5s var(--ease-out-soft) both;
+  }
+  .cookie-banner.is-leaving {
+    animation: cookie-out 0.25s ease-in both;
+  }
+  @keyframes cookie-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+  @keyframes cookie-out {
+    to {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+}
+
+/* 404 emblem: scales gently settling, pivoting from the top. */
+@media (prefers-reduced-motion: no-preference) {
+  .sway {
+    transform-origin: 50% 12%;
+    animation: sway 5s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+}

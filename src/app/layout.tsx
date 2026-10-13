@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { CookieBanner } from "@/components/CookieBanner";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <Footer />
         <ScrollReveal />
+        <CookieBanner />
       </body>
     </html>
   );

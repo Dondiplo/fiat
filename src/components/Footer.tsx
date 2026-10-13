@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { offices, site, tel } from "@/data/site";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 import { LogoFull } from "./Logo";
 import { Instagram, LinkedIn, Mail, XLogo } from "./icons";
 
@@ -9,7 +10,12 @@ const quick = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-const legal = ["Disclaimer", "Privacy Notice", "Cookie Policy", "Accessibility"];
+const legal = [
+  { label: "Disclaimer", href: "/legal#disclaimer" },
+  { label: "Privacy Notice", href: "/legal#privacy" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Accessibility", href: "/legal#accessibility" },
+];
 
 export function Footer() {
   return (
@@ -78,12 +84,15 @@ export function Footer() {
           </p>
           <ul className="-my-2 flex flex-wrap gap-x-5">
             {legal.map((l) => (
-              <li key={l}>
-                <Link href="/legal" className="inline-block py-2 hover:text-navy-700">
-                  {l}
+              <li key={l.href}>
+                <Link href={l.href} className="inline-block py-2 hover:text-navy-700">
+                  {l.label}
                 </Link>
               </li>
             ))}
+            <li>
+              <CookieSettingsButton className="inline-block py-2 hover:text-navy-700" />
+            </li>
           </ul>
         </div>
       </div>
