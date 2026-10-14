@@ -46,7 +46,7 @@ export function CookieBanner() {
       className={`cookie-banner fixed inset-x-0 bottom-0 z-[55] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:p-0 ${leaving ? "is-leaving" : ""}`}
     >
       <div className="relative rounded-2xl border border-line bg-white p-5 shadow-[0_24px_60px_-20px_rgba(11,31,77,0.45)] sm:w-[26rem] sm:p-6">
-        <button onClick={() => choose("declined")} className="absolute top-3 right-3 grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-navy-900" aria-label="Decline and close">
+        <button onClick={() => choose("declined")} className="absolute top-2.5 right-2.5 grid size-10 place-items-center rounded-full text-muted hover:bg-canvas hover:text-navy-900" aria-label="Decline and close">
           <Close className="size-4" />
         </button>
         <p id={titleId} className="pr-8 text-lg font-semibold tracking-tight text-navy-900">

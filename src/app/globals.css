@@ -382,3 +382,100 @@ html.reveal-ready [data-reveal="iris"].is-visible {
     }
   }
 }
+
+/* Expertise flow (see ExpertiseFlow.tsx). JS sets --p on the section and --fill on each card. */
+.xflow-bar {
+  transform: scaleX(var(--p));
+}
+/* The navy layer opens from the bottom as the card's --fill goes 0 → 1. */
+.xflow-fill {
+  clip-path: inset(calc((1 - var(--fill, 0)) * 100%) 0 0 0);
+}
+.xflow-caption {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s var(--ease-out-soft);
+}
+.xflow[data-balanced] .xflow-caption {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .xflow-progress {
+    display: none;
+  }
+}
+
+/* Homepage figures: navy fill sweeps in from the left on hover, retracts on leave. */
+/* --g matches .container-x's gutter; the first half's text lines up with the
+   content column (max width 88rem), which needs extra left padding on wide screens. */
+.stat {
+  --g: 1rem;
+}
+@media (min-width: 40rem) {
+  .stat {
+    --g: 1.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  .stat {
+    --g: 2.5rem;
+  }
+}
+.stat:first-child > div {
+  padding-left: max(var(--g), calc(100% - 44rem + var(--g)));
+}
+.stat-fill {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.6s var(--ease-out-soft);
+}
+@media (hover: hover) {
+  .stat:hover .stat-fill {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-fill {
+    transition: none;
+  }
+}
+
+/* "Our promise" cards: on devices that can hover, the description writes in word by
+   word on hover/focus (each word rises and sharpens, staggered), and clears at once on leave. */
+@media (hover: hover) {
+  .pw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.55em);
+    filter: blur(3px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      filter 0.25s ease;
+  }
+  .promise-card:hover .pw,
+  .promise-card:focus-visible .pw {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-out-soft),
+      filter 0.4s ease;
+    transition-delay: calc(var(--w) * 38ms);
+  }
+}
+@media (hover: none) {
+  .promise-plus {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pw {
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import ladyJustice from "../../public/images/lady-justice.jpg";
 import { LogoMark, LogoSpin } from "@/components/Logo";
 import { SpecialistFinder } from "@/components/SpecialistFinder";
+import { ExpertiseFlow } from "@/components/ExpertiseFlow";
 import { CtaBand, InsightCard, SectionHeading } from "@/components/ui";
 import { ArrowRight } from "@/components/icons";
 import { practices } from "@/data/practices";
@@ -64,16 +65,24 @@ export default function Home() {
 
       {/* Firm at a glance */}
       <section className="border-y border-line bg-white">
-        <div className="container-x grid grid-cols-2 divide-x divide-line">
+        {/* Full-bleed halves so the hover fill reaches the screen edge; .stat padding keeps text on the content grid. */}
+        <div className="grid grid-cols-2 divide-x divide-line">
           {[
             { n: "1", l: "Firm, one standard" },
             { n: practices.length, l: "Practice areas" },
           ].map((s) => (
-            <div key={s.l} data-reveal className="px-3 py-6 first:pl-0 sm:px-6 sm:py-8">
-              <p data-count={s.n} className="text-4xl font-semibold tracking-tight text-navy-900 tabular-nums sm:text-5xl">
-                {s.n}
-              </p>
-              <p className="mt-1 text-sm text-muted">{s.l}</p>
+            <div key={s.l} data-reveal className="stat relative overflow-hidden">
+              <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+                <p data-count={s.n} className="text-4xl font-semibold tracking-tight text-navy-900 tabular-nums sm:text-5xl">
+                  {s.n}
+                </p>
+                <p className="mt-1 text-sm text-muted">{s.l}</p>
+              </div>
+              {/* Navy copy revealed left to right on hover; text turns white at the edge. */}
+              <div aria-hidden className="stat-fill pointer-events-none absolute inset-0 bg-navy-900 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+                <p className="text-4xl font-semibold tracking-tight text-white tabular-nums sm:text-5xl">{s.n}</p>
+                <p className="mt-1 text-sm text-gold-light">{s.l}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -86,24 +95,7 @@ export default function Home() {
           <Image src={ladyJustice} alt="" fill sizes="100vw" placeholder="blur" quality={70} className="object-cover object-[50%_30%] opacity-[0.24]" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
         </div>
-        <div className="container-x py-16 sm:py-24">
-          <SectionHeading eyebrow="Expertise" title={<>Legal advice for <span className="text-navy-700">every</span> part of business and life.</>} action={{ label: `All ${practices.length} practice areas`, href: "/practice-areas" }} />
-          <ul className="mt-10 grid overflow-hidden rounded-sm border-t border-l border-line sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((p) => (
-              <li key={p.slug} className="group relative border-r border-b border-line bg-white/85 p-6 transition hover:bg-white sm:p-8">
-                <div data-reveal>
-                  <h3 className="font-semibold tracking-tight text-2xl text-navy-900 sm:text-[1.75rem]">
-                    <Link href={`/practice-areas/${p.slug}`} className="after:absolute after:inset-0">
-                      {p.name}
-                    </Link>
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{p.summary}</p>
-                  <ArrowRight className="mt-6 text-navy-900 transition group-hover:translate-x-1" />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ExpertiseFlow items={featured.map(({ slug, name, summary }) => ({ slug, name, summary }))} total={practices.length} />
       </section>
 
       {/* Promise */}
@@ -118,10 +110,26 @@ export default function Home() {
           </div>
           <ol className="grid gap-8 sm:grid-cols-3 lg:col-span-7 lg:gap-6">
             {promise.map((x, i) => (
-              <li key={x.title} data-reveal className="border-t-2 border-navy-900 pt-5">
+              // Description is revealed on hover/focus where hover exists; always shown on touch screens.
+              // The space stays reserved so revealing it never shifts the page.
+              <li key={x.title} data-reveal tabIndex={0} className="promise-card group relative cursor-default border-t-2 border-navy-900 pt-5 transition-colors hover:border-gold focus-visible:border-gold">
+                <span className="promise-plus absolute top-4 right-0 grid size-6 place-items-center text-navy-900 transition duration-300 group-hover:rotate-45 group-hover:text-gold group-focus-visible:rotate-45 group-focus-visible:text-gold" aria-hidden>
+                  <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+                    <path d="M8 2v12M2 8h12" />
+                  </svg>
+                </span>
                 <span className="text-xs font-bold tracking-widest text-gold">{`0${i + 1}`}</span>
                 <h3 className="mt-2 font-semibold tracking-tight text-2xl text-navy-900">{x.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{x.body}</p>
+                <p className="promise-body mt-2 text-sm leading-relaxed text-muted">
+                  {/* Each word is its own span so they can "write in" one after another (see .pw). */}
+                  {x.body.split(" ").map((word, j) => (
+                    <span key={j}>
+                      <span className="pw" style={{ "--w": j } as React.CSSProperties}>
+                        {word}
+                      </span>{" "}
+                    </span>
+                  ))}
+                </p>
               </li>
             ))}
           </ol>
