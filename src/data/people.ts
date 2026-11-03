@@ -8,7 +8,7 @@ import chinonsoSheriff from "../../public/images/people/chinonso-sheriff.jpg";
 export type Person = {
   slug: string;
   name: string;
-  role: "Founder & Principal Counsel" | "Managing Partner" | "Partner" | "Counsel" | "Senior Associate" | "Associate";
+  role: "Founder/Principal Partner" | "Managing Partner" | "Partner" | "Counsel" | "Senior Associate" | "Associate";
   honorific?: string;
   office?: "Lagos" | "Abuja";
   practices: string[]; // practice slugs
@@ -33,12 +33,12 @@ export const people: Person[] = [
   {
     slug: "chinonso-sheriff",
     name: "Adele Chinonso Sheriff",
-    role: "Founder & Principal Counsel",
+    role: "Founder/Principal Partner",
     practices: ["criminal-law-defence", "dispute-resolution", "property-conveyancing", "real-estate-construction", "corporate-m-and-a", "entertainment-law"],
     focus: ["Criminal Law", "Civil Litigation", "Property Law", "Corporate Law", "Business Law", "Entertainment Law"],
     photo: chinonsoSheriff,
     bio: [
-      "Chinonso is the Founder and Principal Counsel of Fiat Justitia Attorneys. He is a dedicated legal practitioner specialising in Criminal, Civil, Property, Corporate, Business and Entertainment Law, combining meticulous legal research with persuasive writing to deliver clear, strategic solutions to complex legal challenges.",
+      "Chinonso is the Founder and Principal Partner of Fiat Justitia Attorneys. He is a dedicated legal practitioner specialising in Criminal, Civil, Property, Corporate, Business and Entertainment Law, combining meticulous legal research with persuasive writing to deliver clear, strategic solutions to complex legal challenges.",
       "He is an alumnus of Afe Babalola University, Ado-Ekiti, Ekiti State, where he obtained his Bachelor of Laws degree (LL.B. Hons.). He went on to complete the mandatory National Youth Service Corps (NYSC) and then the Nigerian Law School programme at the Bagauda Campus, Kano State.",
     ],
     education: ["B.L., Nigerian Law School, Bagauda Campus, Kano", "LL.B. (Hons.), Afe Babalola University, Ado-Ekiti"],
@@ -197,7 +197,7 @@ export const people: Person[] = [
 ];
 
 /** The firm's real lawyers, most senior first. */
-const seniority: Person["role"][] = ["Founder & Principal Counsel", "Managing Partner", "Partner", "Counsel", "Senior Associate", "Associate"];
+const seniority: Person["role"][] = ["Founder/Principal Partner", "Managing Partner", "Partner", "Counsel", "Senior Associate", "Associate"];
 export const team = people.filter((x) => !x.placeholder).sort((a, b) => seniority.indexOf(a.role) - seniority.indexOf(b.role));
 
 export const getPerson = (slug: string) => people.find((x) => x.slug === slug);
