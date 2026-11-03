@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Meet the lawyers of Fiat Justitia Attorneys.",
 };
 
-const isLeader = (x: Person) => x.role === "Principal Partner" || x.role === "Managing Partner";
+const isLeader = (x: Person) => x.role === "Founder & Principal Counsel" || x.role === "Managing Partner";
 
 export default function People() {
   const leaders = team.filter(isLeader);
