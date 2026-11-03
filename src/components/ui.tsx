@@ -66,6 +66,18 @@ export function SectionHeading({ eyebrow, title, action, className = "" }: { eye
   );
 }
 
+export function FocusList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-5 flex flex-wrap gap-2">
+      {items.map((f) => (
+        <li key={f} className="rounded-full border border-navy-900/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy-900 sm:text-sm">
+          {f}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function Avatar({ name, size = "md" }: { name: string; size?: "sm" | "md" | "lg" }) {
   const s = { sm: "size-10 text-sm", md: "size-16 text-xl", lg: "size-32 text-4xl sm:size-40 sm:text-5xl" }[size];
   return (

@@ -1,7 +1,8 @@
 import { practices } from "@/data/practices";
 import { insights } from "@/data/insights";
+import { team } from "@/data/people";
 
-export type SearchHit = { kind: "Practice" | "Insight"; title: string; meta: string; href: string; text: string };
+export type SearchHit = { kind: "Practice" | "Insight" | "Person"; title: string; meta: string; href: string; text: string };
 
 export const searchIndex: SearchHit[] = [
   ...practices.map((x) => ({
@@ -10,6 +11,13 @@ export const searchIndex: SearchHit[] = [
     meta: "Practice area",
     href: `/practice-areas/${x.slug}`,
     text: `${x.name} ${x.summary} ${x.services.join(" ")}`,
+  })),
+  ...team.map((x) => ({
+    kind: "Person" as const,
+    title: x.name,
+    meta: x.role,
+    href: `/people/${x.slug}`,
+    text: `${x.name} ${x.role} ${(x.focus ?? []).join(" ")}`,
   })),
   ...insights.map((x) => ({
     kind: "Insight" as const,

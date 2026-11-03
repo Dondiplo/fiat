@@ -6,6 +6,7 @@ import { ArrowRight, Instagram, LinkedIn, Mail, Phone, XLogo } from "./icons";
 
 const quick = [
   { label: "Practice Areas", href: "/practice-areas" },
+  { label: "People", href: "/people" },
   { label: "Insights", href: "/insights" },
   { label: "Contact Us", href: "/contact" },
 ];

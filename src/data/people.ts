@@ -1,27 +1,49 @@
-// PLACEHOLDER PEOPLE — these profiles are invented for the design build.
-// Replace with the firm's real lawyers (names, roles, bios, photos) before launch.
+import type { StaticImageData } from "next/image";
+import chinonsoSheriff from "../../public/images/people/chinonso-sheriff.jpg";
+
+// Real lawyers are written out in full and appear on the People pages. Profiles
+// made with p() are PLACEHOLDERS invented for the design build (they only author
+// sample insights); replace or remove them before launch.
 
 export type Person = {
   slug: string;
   name: string;
-  role: "Managing Partner" | "Partner" | "Counsel" | "Senior Associate" | "Associate";
+  role: "Principal Partner" | "Managing Partner" | "Partner" | "Counsel" | "Senior Associate" | "Associate";
   honorific?: string;
-  office: "Lagos" | "Abuja";
+  office?: "Lagos" | "Abuja";
   practices: string[]; // practice slugs
-  phone: string;
-  email: string;
+  focus?: string[]; // specialisms as the lawyer describes them
+  photo?: StaticImageData;
+  phone?: string;
+  email?: string;
   bio: string[];
   education: string[];
   admissions: string[];
+  placeholder?: true;
 };
 
-const p = (person: Omit<Person, "email" | "phone"> & { phone?: string }): Person => ({
+const p = (person: Omit<Person, "email" | "phone" | "placeholder"> & { phone?: string }): Person => ({
   phone: "+234 (0) 1 000 0000",
+  placeholder: true,
   ...person,
   email: `${person.slug.split("-")[0]}.${person.slug.split("-").slice(-1)[0]}@fiatjustitia.com`,
 });
 
 export const people: Person[] = [
+  {
+    slug: "chinonso-sheriff",
+    name: "Adele Chinonso Sheriff",
+    role: "Principal Partner",
+    practices: ["criminal-law-defence", "dispute-resolution", "property-conveyancing", "real-estate-construction", "corporate-m-and-a", "entertainment-law"],
+    focus: ["Criminal Law", "Civil Litigation", "Property Law", "Corporate Law", "Business Law", "Entertainment Law"],
+    photo: chinonsoSheriff,
+    bio: [
+      "Chinonso is the Principal Partner of Fiat Justitia Attorneys. He is a dedicated legal practitioner specialising in Criminal, Civil, Property, Corporate, Business and Entertainment Law, combining meticulous legal research with persuasive writing to deliver clear, strategic solutions to complex legal challenges.",
+      "He is an alumnus of Afe Babalola University, Ado-Ekiti, Ekiti State, where he obtained his Bachelor of Laws degree (LL.B. Hons.). He went on to complete the mandatory National Youth Service Corps (NYSC) and then the Nigerian Law School programme at the Bagauda Campus, Kano State.",
+    ],
+    education: ["B.L., Nigerian Law School, Bagauda Campus, Kano", "LL.B. (Hons.), Afe Babalola University, Ado-Ekiti"],
+    admissions: ["Barrister & Solicitor of the Supreme Court of Nigeria"],
+  },
   p({
     slug: "adaeze-okonkwo",
     name: "Adaeze Okonkwo",
@@ -173,6 +195,10 @@ export const people: Person[] = [
     admissions: ["Barrister & Solicitor of the Supreme Court of Nigeria"],
   }),
 ];
+
+/** The firm's real lawyers, most senior first. */
+const seniority: Person["role"][] = ["Principal Partner", "Managing Partner", "Partner", "Counsel", "Senior Associate", "Associate"];
+export const team = people.filter((x) => !x.placeholder).sort((a, b) => seniority.indexOf(a.role) - seniority.indexOf(b.role));
 
 export const getPerson = (slug: string) => people.find((x) => x.slug === slug);
 export const displayName = (x: Person) => (x.honorific ? `${x.name}, ${x.honorific}` : x.name);

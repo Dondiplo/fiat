@@ -34,6 +34,7 @@ export const offices: Office[] = [
 
 export const mainNav = [
   { label: "Practice Areas", href: "/practice-areas", menu: "practices" as const },
+  { label: "People", href: "/people" },
   { label: "Insights", href: "/insights" },
 ];
 
