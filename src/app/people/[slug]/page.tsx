@@ -23,7 +23,6 @@ export default async function PersonPage({ params }: Props) {
   const person = getMember((await params).slug);
   if (!person) notFound();
 
-  const portrait = person.portrait ?? person.photo;
   const practices = person.practices.map(getPractice).filter((x) => x !== undefined);
   const firstName = person.name.split(" ").slice(-2, -1)[0] ?? person.name;
 
@@ -46,9 +45,9 @@ export default async function PersonPage({ params }: Props) {
               Contact {firstName} <ArrowRight className="size-4" />
             </Link>
           </div>
-          {portrait && (
+          {person.photo && (
             <div className="reveal relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-sm bg-navy-900 shadow-[0_30px_60px_-30px_rgba(11,31,77,0.55)] ring-1 ring-gold/40 md:col-span-5 md:max-w-none lg:col-span-4">
-              <Image src={portrait} alt={`Portrait of ${person.name}`} fill priority sizes="(min-width: 1024px) 33vw, (min-width: 768px) 42vw, 384px" placeholder="blur" className="object-cover object-top" />
+              <Image src={person.photo} alt={`Portrait of ${person.name}`} fill priority sizes="(min-width: 1024px) 33vw, (min-width: 768px) 42vw, 384px" placeholder="blur" className="object-cover object-top" />
             </div>
           )}
         </div>

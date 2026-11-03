@@ -1,6 +1,5 @@
 import type { StaticImageData } from "next/image";
 import chinonsoSheriff from "../../public/images/people/chinonso-sheriff.jpg";
-import chinonsoSheriffPortrait from "../../public/images/people/chinonso-sheriff-portrait.jpg";
 
 // Real lawyers are written out in full and appear on the People pages. Profiles
 // made with p() are PLACEHOLDERS invented for the design build (they only author
@@ -15,7 +14,6 @@ export type Person = {
   practices: string[]; // practice slugs
   focus?: string[]; // specialisms as the lawyer describes them
   photo?: StaticImageData;
-  portrait?: StaticImageData; // optional second photo for the profile page
   phone?: string;
   email?: string;
   bio: string[];
@@ -39,7 +37,6 @@ export const people: Person[] = [
     practices: ["criminal-law-defence", "dispute-resolution", "property-conveyancing", "real-estate-construction", "corporate-m-and-a", "entertainment-law"],
     focus: ["Criminal Law", "Civil Litigation", "Property Law", "Corporate Law", "Business Law", "Entertainment Law"],
     photo: chinonsoSheriff,
-    portrait: chinonsoSheriffPortrait,
     bio: [
       "Chinonso is the Founder and Principal Counsel of Fiat Justitia Attorneys. He is a dedicated legal practitioner specialising in Criminal, Civil, Property, Corporate, Business and Entertainment Law, combining meticulous legal research with persuasive writing to deliver clear, strategic solutions to complex legal challenges.",
       "He is an alumnus of Afe Babalola University, Ado-Ekiti, Ekiti State, where he obtained his Bachelor of Laws degree (LL.B. Hons.). He went on to complete the mandatory National Youth Service Corps (NYSC) and then the Nigerian Law School programme at the Bagauda Campus, Kano State.",
