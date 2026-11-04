@@ -64,7 +64,6 @@ export default async function PersonPage({ params }: Props) {
         </article>
 
         <aside data-reveal className="space-y-6 lg:col-span-4">
-          <Facts title="Education" items={person.education} />
           {practices.length > 0 && (
             <div className="rounded-sm bg-canvas p-6">
               <p className="eyebrow">Practice areas</p>
@@ -85,19 +84,5 @@ export default async function PersonPage({ params }: Props) {
 
       <CtaBand title={`Speak to ${firstName} about your matter.`} />
     </>
-  );
-}
-
-function Facts({ title, items }: { title: string; items: string[] }) {
-  if (!items.length) return null;
-  return (
-    <div className="rounded-sm border border-line p-6">
-      <p className="eyebrow">{title}</p>
-      <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink/80">
-        {items.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-    </div>
   );
 }
