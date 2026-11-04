@@ -19,7 +19,7 @@ export type Person = {
   email?: string;
   bio: string[];
   education: string[];
-  admissions: string[];
+  admissions?: string[];
   placeholder?: true;
 };
 
@@ -43,12 +43,10 @@ export const people: Person[] = [
       "He is an alumnus of Afe Babalola University, Ado-Ekiti, Ekiti State, where he obtained his Bachelor of Laws degree (LL.B. Hons.). He went on to complete the mandatory National Youth Service Corps (NYSC) and then the Nigerian Law School programme at the Bagauda Campus, Kano State.",
     ],
     education: ["B.L., Nigerian Law School, Bagauda Campus, Kano", "LL.B. (Hons.), Afe Babalola University, Ado-Ekiti"],
-    admissions: ["Barrister & Solicitor of the Supreme Court of Nigeria"],
   },
   {
     slug: "yusuf-amuda-kannike",
     name: "Yusuf Amuda-Kannike",
-    honorific: "Esq.",
     role: "Partner",
     practices: ["technology-media-telecoms", "data-protection-privacy", "dispute-resolution", "energy-natural-resources", "corporate-m-and-a", "regulatory-compliance"],
     focus: ["Technology Law", "Litigation & Advocacy", "Alternative Dispute Resolution", "Energy Law", "Corporate Practice"],
@@ -60,7 +58,6 @@ export const people: Person[] = [
       "His approach pairs rigorous scholarship with practical, commercially minded advocacy. He is committed to giving clients clear, strategic and dependable counsel, whether in the boardroom, at the negotiating table or before the highest court in the land.",
     ],
     education: ["Master’s degree in Information Technology Law"],
-    admissions: [],
   },
   p({
     slug: "adaeze-okonkwo",

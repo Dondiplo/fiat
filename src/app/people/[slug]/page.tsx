@@ -65,7 +65,6 @@ export default async function PersonPage({ params }: Props) {
 
         <aside data-reveal className="space-y-6 lg:col-span-4">
           <Facts title="Education" items={person.education} />
-          <Facts title="Admissions" items={person.admissions} />
           {practices.length > 0 && (
             <div className="rounded-sm bg-canvas p-6">
               <p className="eyebrow">Practice areas</p>
