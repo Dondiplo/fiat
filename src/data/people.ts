@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import chinonsoSheriff from "../../public/images/people/chinonso-sheriff.jpg";
+import yusufAmudaKannike from "../../public/images/people/yusuf-amuda-kannike.jpg";
 
 // Real lawyers are written out in full and appear on the People pages. Profiles
 // made with p() are PLACEHOLDERS invented for the design build (they only author
@@ -43,6 +44,23 @@ export const people: Person[] = [
     ],
     education: ["B.L., Nigerian Law School, Bagauda Campus, Kano", "LL.B. (Hons.), Afe Babalola University, Ado-Ekiti"],
     admissions: ["Barrister & Solicitor of the Supreme Court of Nigeria"],
+  },
+  {
+    slug: "yusuf-amuda-kannike",
+    name: "Yusuf Amuda-Kannike",
+    honorific: "Esq.",
+    role: "Partner",
+    practices: ["technology-media-telecoms", "data-protection-privacy", "dispute-resolution", "energy-natural-resources", "corporate-m-and-a", "regulatory-compliance"],
+    focus: ["Technology Law", "Litigation & Advocacy", "Alternative Dispute Resolution", "Energy Law", "Corporate Practice"],
+    photo: yusufAmudaKannike,
+    bio: [
+      "Yusuf is a Partner at Fiat Justitia Attorneys, a legal practitioner whose work sits where sound legal tradition meets the demands of a fast-changing economy. He has built a distinguished practice across technology law, litigation and courtroom advocacy, alternative dispute resolution, energy law and corporate practice. Clients seek him out for his sharp analysis, strategic judgment and results-driven counsel.",
+      "His advisory work spans data protection and privacy, technology and digital-economy regulation, commercial transactions, regulatory compliance and corporate governance. In dispute resolution, he is a formidable advocate in the courtroom and an equally skilled negotiator, arbitrator-facing counsel and mediator-minded problem solver. He has handled and participated in notable matters across Nigeria’s court system, up to the Supreme Court of Nigeria.",
+      "Yusuf holds a Master’s degree in Information Technology Law, which grounds his practice in the legal questions raised by emerging technologies. He is also preparing to pursue doctoral research as a prospective Ph.D. candidate. A respected voice in legal scholarship, he has authored over ten published articles in leading domestic and international journals.",
+      "His approach pairs rigorous scholarship with practical, commercially minded advocacy. He is committed to giving clients clear, strategic and dependable counsel, whether in the boardroom, at the negotiating table or before the highest court in the land.",
+    ],
+    education: ["Master’s degree in Information Technology Law"],
+    admissions: [],
   },
   p({
     slug: "adaeze-okonkwo",
