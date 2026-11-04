@@ -39,8 +39,10 @@ export const people: Person[] = [
     focus: ["Criminal Law", "Civil Litigation", "Property Law", "Corporate Law", "Business Law", "Entertainment Law"],
     photo: chinonsoSheriff,
     bio: [
-      "Chinonso is the Founder and Principal Partner of Fiat Justitia Attorneys. He is a dedicated legal practitioner specialising in Criminal, Civil, Property, Corporate, Business and Entertainment Law, combining meticulous legal research with persuasive writing to deliver clear, strategic solutions to complex legal challenges.",
-      "He is an alumnus of Afe Babalola University, Ado-Ekiti, Ekiti State, where he obtained his Bachelor of Laws degree (LL.B. Hons.). He went on to complete the mandatory National Youth Service Corps (NYSC) and then the Nigerian Law School programme at the Bagauda Campus, Kano State.",
+      "Chinonso is the Founder and Principal Partner of Fiat Justitia Attorneys, a full-service law firm dedicated to providing strategic, forward-thinking legal solutions. As a versatile and result-driven legal practitioner, Chinonso specializes in Criminal, Civil, Property, Corporate, Business, and Entertainment Law. He combines rigorous legal research, sharp analytical strategy, and persuasive advocacy to help clients navigate complex disputes and secure their commercial interests.",
+      "Prior to establishing Fiat Justitia Attorneys, Chinonso built a solid foundation in core legal practice, developing a reputation for meticulous drafting, keen contract negotiation, and pragmatic counsel. Whether advising emerging businesses, protecting creative IP, managing high-stakes property transactions, or asserting client rights in litigation, his practice is rooted in uncompromising standards of excellence and client dedication.",
+      "Chinonso earned his Bachelor of Laws degree (LL.B. Hons.) from the prestigious Afe Babalola University, Ado-Ekiti (ABUAD). He went on to fulfill the mandatory National Youth Service Corps (NYSC) service, before successfully completing his practical legal training at the Nigerian Law School, Bagauda Campus (Kano State).",
+      "A passionate advocate for justice and sound governance, Chinonso remains committed to advancing the legal profession through impactful representation and relentless legal excellence.",
     ],
     education: ["B.L., Nigerian Law School, Bagauda Campus, Kano", "LL.B. (Hons.), Afe Babalola University, Ado-Ekiti"],
   },
