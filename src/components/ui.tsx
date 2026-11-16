@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getPerson, initials, displayName } from "@/data/people";
+import { getPerson, initials, displayName, type Person } from "@/data/people";
 import { formatDate, type Insight } from "@/data/insights";
 import { ArrowRight } from "./icons";
 
@@ -78,11 +79,11 @@ export function FocusList({ items }: { items: string[] }) {
   );
 }
 
-export function Avatar({ name, size = "md" }: { name: string; size?: "sm" | "md" | "lg" }) {
+export function Avatar({ name, photo, size = "md" }: { name: string; photo?: Person["photo"]; size?: "sm" | "md" | "lg" }) {
   const s = { sm: "size-10 text-sm", md: "size-16 text-xl", lg: "size-32 text-4xl sm:size-40 sm:text-5xl" }[size];
   return (
-    <span aria-hidden className={`relative grid shrink-0 place-items-center rounded-full bg-navy-900 font-semibold tracking-tight text-white ring-1 ring-gold/60 ring-offset-2 ring-offset-white ${s}`}>
-      {initials(name)}
+    <span aria-hidden className={`relative grid shrink-0 place-items-center overflow-hidden rounded-full bg-navy-900 font-semibold tracking-tight text-white ring-1 ring-gold/60 ring-offset-2 ring-offset-white ${s}`}>
+      {photo ? <Image src={photo} alt="" fill sizes="160px" className="object-cover object-top" /> : initials(name)}
     </span>
   );
 }
@@ -90,7 +91,12 @@ export function Avatar({ name, size = "md" }: { name: string; size?: "sm" | "md"
 export function InsightCard({ insight, featured = false }: { insight: Insight; featured?: boolean }) {
   const author = getPerson(insight.author);
   return (
-    <article data-reveal className={`group relative flex h-full flex-col rounded-sm border border-line bg-white transition hover:border-navy-900/40 hover:shadow-[0_18px_40px_-24px_rgba(11,31,77,0.35)] ${featured ? "p-6 sm:p-10" : "p-5 sm:p-6"}`}>
+    <article data-reveal className={`group relative flex h-full flex-col overflow-hidden rounded-sm border border-line bg-white transition hover:border-navy-900/40 hover:shadow-[0_18px_40px_-24px_rgba(11,31,77,0.35)] ${featured ? "p-6 sm:p-10" : "p-5 sm:p-6"}`}>
+      {insight.image && (
+        <div className={`relative aspect-video bg-navy-900 ${featured ? "-mx-6 -mt-6 mb-6 sm:-mx-10 sm:-mt-10 sm:mb-8" : "-mx-5 -mt-5 mb-5 sm:-mx-6 sm:-mt-6"}`}>
+          <Image src={insight.image.src} alt="" fill sizes={featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"} placeholder="blur" className="object-cover" />
+        </div>
+      )}
       <div className="flex items-center gap-3 text-xs font-semibold">
         <span className="rounded-full bg-navy-50 px-2.5 py-1 tracking-wider text-navy-900 uppercase">{insight.type}</span>
         <time dateTime={insight.date} className="text-muted">
@@ -105,7 +111,7 @@ export function InsightCard({ insight, featured = false }: { insight: Insight; f
       <p className={`mt-3 leading-relaxed text-muted ${featured ? "line-clamp-4 text-sm sm:line-clamp-none sm:text-lg" : "line-clamp-3 text-sm"}`}>{insight.summary}</p>
       {author && (
         <div className="mt-auto flex items-center gap-3 pt-6">
-          <Avatar name={author.name} size="sm" />
+          <Avatar name={author.name} photo={author.photo} size="sm" />
           <div className="text-sm leading-tight">
             <p className="font-semibold text-navy-900">{displayName(author)}</p>
             <p className="text-muted">{author.role}</p>

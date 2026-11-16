@@ -1,5 +1,8 @@
-// Sample Insights. These are written to show the layout; replace them with
-// the firm's own published articles.
+import type { StaticImageData } from "next/image";
+import flyingRoadster from "../../public/images/insights/flying-roadster.jpg";
+
+// The firm's published articles. In `body`, a string starting with "## " is a
+// section heading; every other string is a paragraph.
 
 export type InsightType = "Insight" | "News" | "Deal" | "Event" | "Podcast" | "Report";
 
@@ -11,165 +14,69 @@ export type Insight = {
   author: string; // person slug
   practices: string[];
   summary: string;
+  image?: { src: StaticImageData; alt: string; credit?: string };
   body: string[];
   readMins: number;
 };
 
 export const insights: Insight[] = [
   {
-    slug: "buying-land-in-lagos-due-diligence-checklist",
-    title: "Buying land in Lagos: a due diligence checklist",
+    slug: "who-regulates-a-car-that-flies",
+    title: "Who regulates a car that flies? A Nigerian perspective",
     type: "Insight",
-    date: "2026-09-30",
-    author: "oluwaseun-adebayo",
-    practices: ["property-conveyancing"],
-    summary: "The searches and documents to check before you pay for land or a home, and how to perfect your title afterwards.",
+    date: "2026-11-16",
+    author: "yusuf-amuda-kannike",
+    practices: ["technology-media-telecoms", "regulatory-compliance"],
+    summary:
+      "Tesla’s flying Roadster demonstration raises a question Nigerian law has not yet answered: is it a car or an aircraft? Who signs the certificate, who inspects it, and what should Nigeria ask for before one lands here?",
+    image: { src: flyingRoadster, alt: "A white Tesla Roadster hovering above the ground on jets of air at night", credit: "Image: Tesla" },
     body: [
-      "Many land disputes in Lagos could have been avoided with proper checks before payment. Start with a search at the Lands Registry to confirm the seller's root of title and any encumbrances.",
-      "Check whether the land is affected by government acquisition, confirm the survey plan with the Surveyor-General's office, and verify the identity and authority of everyone signing for the seller.",
-      "After completion, apply for Governor's consent so that the transfer is valid under the Land Use Act. Until consent is granted, your title is not fully protected.",
+      "I was scrolling on X (Twitter) on a Friday morning when the video found me. A white sports car, low and wide, drove up a curved ramp. It did not stop at the top. It hung there, upside down, stationary, as though gravity had been suspended by negotiation. Then it launched off the end, flipped in mid air, hovered for a moment, and landed. No driver. Just a machine doing something that looked like a magic trick performed with physics.",
+      "I watched it four times. I love this kind of thing. I have spent enough evenings reading about thrusters and downforce (mostly from my experiences playing video games) to know that the engineering behind that clip is not a trick, and I am not one of those people who meets every new machine with a sigh about the youth of today. The car is genuinely interesting. But the excitement dropped after about the fifth viewing, and the lawyer in me took over. The question was not whether it was beautiful. The question was who would have to sign a certificate before a Nigerian could drive it, or fly it, or whatever the verb turns out to be.",
+      "Then I read the fine print. The car in the video is not one product. It is a family of versions. Tesla showed a base Roadster, a “Thrust” version with rear mounted cold gas thrusters for acceleration, and a “Rocket” version with ten cold gas thrusters around the car that can fly. The Rocket version is available only by invitation from Tesla, and Tesla itself warns that flying on public roads is not permitted and that the Rocket may not be available in all regions. No price. Production not before 2028. Elon Musk has said the car is “not necessarily a safety optimised” product and that success is not guaranteed.",
+      "So the flying car is not the car most buyers will see. The acceleration thrusters may be limited. The suction system may be the only feature that reaches ordinary customers, and even that is unconfirmed. My scepticism is not about whether the technology works. It is about the gap between a livestreamed demonstration and a product a regulator can actually license. That gap is where the law lives.",
+
+      "## 1. Is it a car or an aircraft?",
+      "Everything turns on this. If the flying Roadster is an aircraft, the Nigeria Civil Aviation Authority owns it. If it is a motor vehicle, the Federal Road Safety Commission and the state traffic agencies own it. If it is both, then both own it, and neither has a clear statutory map for the overlap. The classification is not a labelling exercise. It determines which licensing regime applies, which certification standards govern the machine, which enforcement officers can stop it, and which liability rules attach when something goes wrong.",
+      "The Nigerian Constitution places aviation on the exclusive legislative list, in item 3 of the Second Schedule, Part I, which covers aviation, including airports, safety of aircraft and carriage of passengers and goods by air. That means the federal government regulates it and states do not. The Civil Aviation Act 2022 establishes the Nigeria Civil Aviation Authority and, by section 8(3), makes it the sole civil aviation regulatory body in the country, notwithstanding anything in any other law. If a vehicle leaves the ground and enters navigable airspace, even briefly, the NCAA has a plausible claim to regulate that flight.",
+      "On the road side, the Federal Road Safety Commission (Establishment) Act 2007 creates the commission and the corps. Section 10(2) sets out the functions of the corps, which include making the highway safe for motorists and other road users, recommending works and devices designed to eliminate or minimise accidents, and advising governments on road safety. Section 10(4) empowers members of the corps to arrest and prosecute persons suspected of traffic offences. The National Road Traffic Regulations 2012 sit underneath that Act. Regulation 140(1) requires a vehicle intended for use on a public road to be examined before registration. The regulations deal with registration, licensing, roadworthiness and general road use. None of them was drafted with a machine that can hover in mind.",
+      "The international layer does not resolve the ambiguity. The Chicago Convention 1944 defines an aircraft by reference to support derived from the reactions of the air, and Article 8 requires special authorisation for pilotless aircraft flown over the territory of a contracting state. Nigeria is a contracting state. If the flying Roadster is an aircraft, the Convention’s framework is already waiting for it.",
+      "Comparative regulators have not waited for a final answer. The FAA issued a final rule in October of 2024 for the integration of powered lift aircraft, covering pilot certification and operations, and it type certifies powered lift as a special class under 14 CFR Part 21.17(b). EASA has its SC-VTOL special condition for vertical take off and landing aircraft, with a means of compliance that has been updated several times. Both approaches treat the machine as an aircraft for certification purposes, even when it looks like a car. Earlier roadable aircraft projects, the folding wing cars and drive fly hybrids, were handled through experimental or light sport channels, not through ordinary vehicle type approval. The pattern is consistent: once a machine flies, aviation regulators take the lead, and road regulators are left to negotiate the ground use conditions.",
+      "For Nigeria, the dual regime problem is immediate. A driver’s licence does not authorise flight. A pilot’s licence does not authorise road use. A vehicle registration certificate does not certify airworthiness. An aircraft registration does not satisfy road traffic regulations. The owner of a flying Roadster would need two licences, two registrations, two inspection regimes, and two insurance policies. Or a statutory bridge that does not yet exist. I think the bridge is the real reform, not the vehicle. But before anyone builds it, the classification question has to be answered, and the answer will determine who sits at the head of the table.",
+      "There is a further complication that the demo obscures. The base car, the Thrust version and the Rocket version are not the same regulatory object. A Thrust car with rear acceleration thrusters is still a road vehicle, though a very fast one. A Rocket car that can hover is an aircraft that also drives. A single type approval cannot cover all three. If Tesla releases them in stages, and the evidence suggests it will, Nigerian regulators may face the base car first, the Thrust car later, and the Rocket car never, or only through a special import channel. The law should be written for the staged reality, not for the livestream.",
+
+      "## 2. Downforce, potholes and the people behind the car",
+      "The Tesla demo showed a “multi mode fan and ground sealing system” that the company calls a downforce generator. It pulls air from under the car and can hold the vehicle upside down even when stationary. A retractable rear wing is part of the system. Tesla has not published a full technical breakdown. The exit speed and direction of the fans’ air are not public. The claimed figures, including suction of up to 2 g, a 4,700 kg readout and acceleration from 0 to 60 mph in under a second, are the manufacturer’s claims, not independently verified measurements.",
+      "Is such a device lawful on Nigerian roads? The honest answer is that no Nigerian provision addresses it. The National Road Traffic Regulations 2012 deal with construction and use in general terms, and regulation 140(1) requires an examination before registration. Nothing in the text anticipates a skirt that seals against the road surface to generate suction. I cannot point to a section that prohibits it, and I will not invent one. The gap is real.",
+      "The gap matters because a sealed skirt is a fair weather technology. It needs a smooth, continuous surface to maintain the pressure differential that produces downforce. Nigerian roads are not smooth or continuous. Potholes, patches, laterite shoulders and speed bumps break the seal. The fan system then loses suction, sometimes suddenly. A regulator could respond by restricting the device to certified road surfaces or closed circuits. That is probably the sensible first move. A car that can only use its signature feature on a government certified stretch of asphalt is not a mainstream vehicle, but it is a regulable one.",
+      "The air expelled behind the car is the harder problem. Tesla has not said how fast the air leaves the fans or in which direction. I will not invent a number. But the physics is not mysterious. A fan that pulls air from under a car must put it somewhere, and that somewhere is behind or to the side. At road speed, the expelled air can carry grit, small stones and debris into the path of following vehicles, motorcyclists and pedestrians. The Chaparral 2J and the Brabham BT46B both attracted complaints that their fans sprayed debris at following cars, and the historical record shows that those complaints were part of the reason the systems were restricted or withdrawn from racing. The Brabham case is complicated by the fact that some drivers later conceded the debris problem was exaggerated, but the regulatory reaction is the point. Racing authorities did not wait for a final engineering verdict before acting.",
+      "A Nigerian regulator could require published airflow data and debris test results before permitting road use. That is a modest condition, but it shifts the burden onto the manufacturer. It also gives the FRSC and the NCAA a common factual basis for their separate decisions. I would go further. The data should be filed with both agencies, and the filing should be a condition of import certification. A car that will not disclose its airflow has no business asking for a roadworthiness certificate.",
+      "The compressed air thrusters raise a different set of issues. The vehicle carries high pressure air tanks, which are pressure vessels. Pressure vessels have their own failure modes, and Nigerian law has standards for such equipment in industrial settings, but not in passenger vehicles. Noise is another factor. The National Environmental (Noise Standards and Control) Regulations 2009, made under section 34 of the NESREA Act, prescribe permissible noise levels and prohibit emission of noise beyond those levels under regulation 5(1). Whether those regulations apply to a moving vehicle’s thrusters is unclear, and I will not stretch them beyond their terms. The point is that the noise question is not unregulated in principle. It is unregulated for this specific use.",
+      "Liability is where the dual regime problem becomes a practical nightmare for the person who gets hurt. Compulsory third party motor insurance in Nigeria was historically governed by the Insurance Act 2003 and the Motor Vehicles (Third Party Insurance) Act. The Nigerian Insurance Industry Reform Act 2025 has now repealed and consolidated those statutes. Section 84 provides that no vehicle is permitted on Nigerian roads without motor third party insurance, and Part X sets out the statutory requirements, the rights of third parties, enforcement mechanisms and a compensation fund. That is useful, but it still assumes a motor vehicle on a road. If the flying Roadster injures someone while hovering, the ordinary motor insurance framework may not respond, and the aviation insurance market may not have a product for a car that spends most of its time on the ground. Negligence and strict liability for dangerous things would fill some of the gap, but litigation is a slow substitute for a policy that pays.",
+
+      "## 3. If it arrived in Nigeria today",
+      "The import chain is the first hurdle. The Standards Organisation of Nigeria runs the SON Conformity Assessment Programme, and automotive vehicles are within its mandatory regulated sectors. SON and the National Automotive Design and Development Council have launched the Vehicle Conformity Assessment Programme, known as VehCAP, which requires pre shipment certification for new and used vehicles before customs clearance. NADDC itself was established by Act No. 83 of 2014 and is mandated to develop and implement national automotive policies, promote local manufacturing, and evaluate vehicle standards. The Nigeria Customs Service is meant to block uncertified vehicles from clearance.",
+      "A flying Roadster would test every link in that chain. It is not a conventional vehicle, so the conformity assessment criteria may not fit. It is not a conventional aircraft, so the aviation import procedures may not fit either. The risk is that it enters through a gap, certified by nobody, because each agency assumes the other has done the assessment.",
+      "Airspace is the second hurdle. The closest Nigerian analogue is drone regulation. The NCAA issued the Nigeria Civil Aviation Regulations 2023, and Part 21 deals with remotely piloted aircraft systems. Section 21.3.1 requires every person entitled to possession of a remotely piloted aircraft with a gross mass of 250 grams or more to register it with the authority and hold a valid certificate of registration. Restricted zones around airports and government buildings, especially in Abuja, are enforced through the aviation framework. A flying car is not a drone, but the drone regime is the only existing template for low altitude, non traditional air traffic. The NCAA would have to decide whether to extend that template or write a new one.",
+      "Enforcement is the third hurdle, and it is the one I find most troubling. The FRSC operates on highways. The NCAA operates in airspace. The police operate everywhere and nowhere in particular. State traffic agencies operate within their states. If a flying Roadster is involved in an incident that begins on a road and ends in the air, which agency takes the report? Which one impounds the vehicle? Which one prosecutes? The overlapping mandates are not a theoretical worry. They are the ordinary condition of Nigerian transport regulation, and a vehicle that crosses the road air boundary will expose every seam.",
+      "I have four proposals, and I label them as mine.",
+      "The first is a joint sandbox run by the NCAA, the FRSC and SON. The sandbox would allow a small number of flying vehicles to operate under monitored conditions, with data sharing among the three agencies. The point is not to promote the technology. It is to generate regulatory experience before the technology is widespread. A sandbox with published entry criteria and published results would do more than a hundred inter agency communiqués.",
+      "The second is staged licensing. A flying vehicle should be licensed for ground use first, with flight privileges added only after the owner has demonstrated competence, the vehicle has passed aviation inspection, and the route or site has been approved. This separates the road question from the air question and gives each regulator a clear sequence to work with. It also matches the likely product reality, in which the base car and the Thrust car arrive before the Rocket car, if the Rocket car arrives at all.",
+      "The third is mandatory disclosure of safety test data. Tesla has said the flying features are not approved for public roads and that the car is “not necessarily a safety optimised” product. Those statements are honest, and they are also a warning. A regulator should require the manufacturer to file airflow data, debris test results, pressure vessel certification, noise measurements and crashworthiness data before any Nigerian road or airspace approval. Disclosure is not a ban. It is a condition of entry.",
+      "The fourth is a data recorder. Every flight capable vehicle should carry a recorder that captures speed, altitude, fan status, thruster status and control inputs. The recorder would settle liability questions that would otherwise become battles of expert testimony. It would also give regulators a factual basis for rule making.",
+      "A fair note on the sceptics is necessary. Musk said production would not start until 2028, and he has a record of missing timelines. He also said the flying features are not approved for public roads, and that success is not guaranteed. The demo was a demo. The gap between a livestreamed flip and a showroom car is wide, and Nigerian regulators should not reorganise their agencies around a product that may not arrive on schedule, or may arrive only in a form that cannot fly. But the scepticism cuts both ways. Regulators are usually late. The fact that the product may be delayed, or that the flying version may be invitation only, is not a reason to delay the regulatory thinking. It is a reason to write rules that can accommodate a staged release.",
+
+      "## Conclusion",
+      "I went back to the video after writing most of this. The car is still hanging upside down on the ramp, still flipping, still landing. It is mesmerising in the way that any object doing something impossible is mesmerising. I still love it. I still want to see one. Then the lawyer in me returns, and the question is no longer whether it is beautiful. The question is who signs the certificate, who inspects the skirt, who reads the airflow data, and who answers the phone when it lands on somebody.",
+      "A country can wait for the product and then scramble. Or it can ask for disclosure and set conditions before the product arrives. The second option is cheaper. It is also the one that treats regulation as a form of public protection rather than a reaction to a headline. The car that flies will not wait for Nigerian law to catch up. Nigerian law can at least decide in advance what it will ask for when the car lands.",
     ],
-    readMins: 6,
-  },
-  {
-    slug: "divorce-in-nigeria-how-it-works",
-    title: "Divorce in Nigeria: how the process works",
-    type: "Insight",
-    date: "2026-09-16",
-    author: "amara-okafor",
-    practices: ["family-matrimonial"],
-    summary: "A plain-language guide to divorce under the Matrimonial Causes Act: grounds, timelines, children and property.",
-    body: [
-      "For a statutory marriage, a divorce petition is filed at the State High Court, and the only ground is that the marriage has broken down irretrievably. This is proved by one of the facts listed in the Matrimonial Causes Act, such as separation or intolerable behaviour.",
-      "Generally, no petition may be filed within two years of the marriage without the court's leave. The court first grants a decree nisi, which becomes absolute after three months.",
-      "Arrangements for children are decided on the basis of their best interests, and the court can make orders for maintenance and settlement of property. Customary and Islamic marriages follow different procedures.",
-    ],
-    readMins: 7,
-  },
-  {
-    slug: "nigeria-tax-act-2025-what-changes-for-companies",
-    title: "The Nigeria Tax Act 2025: what changes for companies",
-    type: "Insight",
-    date: "2026-10-06",
-    author: "funmilayo-bakare",
-    practices: ["tax"],
-    summary: "Nigeria's tax laws have been consolidated and the administration reformed. This note sets out the changes boards should now be acting on.",
-    body: [
-      "The 2025 tax reform package consolidates Nigeria's main tax statutes into a single Nigeria Tax Act, alongside new legislation on tax administration and the revenue service.",
-      "For most companies, the immediate work is reviewing group structures, intercompany arrangements and incentive claims against the new rules, and updating compliance calendars.",
-      "Boards should ask management for a readiness plan that covers systems, contracts with gross-up and tax indemnity clauses, and the treatment of transactions currently in progress.",
-    ],
-    readMins: 6,
-  },
-  {
-    slug: "isa-2025-capital-markets-reset",
-    title: "ISA 2025: a reset for Nigeria's capital markets",
-    type: "Insight",
-    date: "2026-09-22",
-    author: "ngozi-eze",
-    practices: ["capital-markets"],
-    summary: "The Investments and Securities Act 2025 widens the SEC's powers and brings digital assets inside the regulatory perimeter.",
-    body: [
-      "The Investments and Securities Act 2025 replaces the 2007 Act and updates the framework for issuers, intermediaries and investors.",
-      "Key changes include express regulation of digital assets and virtual asset service providers, a stronger enforcement toolkit for the SEC, and updated rules on collective investment schemes.",
-      "Issuers and market operators should review their registration status and continuing obligations now.",
-    ],
-    readMins: 5,
-  },
-  {
-    slug: "fiat-justitia-advises-on-solar-joint-venture",
-    title: "Fiat Justitia advises on a 50MW solar joint venture",
-    type: "Deal",
-    date: "2026-09-10",
-    author: "adaeze-okonkwo",
-    practices: ["corporate-m-and-a", "energy-natural-resources"],
-    summary: "Our Corporate and Energy teams advised a European investor on a joint venture to develop a portfolio of commercial and industrial solar assets.",
-    body: [
-      "The transaction involved structuring the joint venture, negotiating shareholder arrangements and securing the regulatory approvals the project needs.",
-      "The team was led from Lagos, with support from our Energy and Abuja-based regulatory lawyers.",
-    ],
-    readMins: 2,
-  },
-  {
-    slug: "enforcing-foreign-arbitral-awards-in-nigeria",
-    title: "Enforcing foreign arbitral awards in Nigeria: a practical guide",
-    type: "Report",
-    date: "2026-08-28",
-    author: "babatunde-adeyemi",
-    practices: ["dispute-resolution"],
-    summary: "Timelines, procedure and the defences we see most often under the Arbitration and Mediation Act 2023.",
-    body: [
-      "Nigeria is party to the New York Convention, and the Arbitration and Mediation Act 2023 modernised the procedure for recognising and enforcing awards.",
-      "This guide walks through the application, the evidence required, the limited grounds for refusal and practical steps to speed up enforcement.",
-    ],
-    readMins: 9,
-  },
-  {
-    slug: "ndpa-two-years-on",
-    title: "The Nigeria Data Protection Act, two years on",
-    type: "Podcast",
-    date: "2026-08-12",
-    author: "chukwuemeka-obi",
-    practices: ["data-protection-privacy"],
-    summary: "Emeka Obi discusses NDPC enforcement trends, cross-border transfers and what regulators expect from controllers.",
-    body: [
-      "In this episode we look at the NDPC's enforcement activity, the compliance audit regime and what good practice looks like for organisations of different sizes.",
-    ],
-    readMins: 28,
-  },
-  {
-    slug: "host-community-trusts-under-the-pia",
-    title: "Host community development trusts under the PIA: lessons so far",
-    type: "Insight",
-    date: "2026-07-30",
-    author: "tamuno-briggs",
-    practices: ["energy-natural-resources"],
-    summary: "What we've learned helping settlors set up and run host community trusts.",
-    body: [
-      "The Petroleum Industry Act requires settlors to incorporate host community development trusts and fund them annually.",
-      "Getting the governance right early, including board composition, needs assessments and reporting, avoids disputes later.",
-    ],
-    readMins: 7,
-  },
-  {
-    slug: "fiat-justitia-welcomes-new-partners",
-    title: "Fiat Justitia announces two new partners",
-    type: "News",
-    date: "2026-07-01",
-    author: "adaeze-okonkwo",
-    practices: [],
-    summary: "We are pleased to announce two promotions to partnership, in our Real Estate and Technology practices.",
-    body: ["The promotions reflect the growth of both practices and our commitment to developing talent from within the firm."],
-    readMins: 2,
-  },
-  {
-    slug: "breakfast-briefing-merger-control-2026",
-    title: "Breakfast briefing: merger control in 2026",
-    type: "Event",
-    date: "2026-06-18",
-    author: "ibrahim-musa",
-    practices: ["competition-antitrust"],
-    summary: "A briefing in Lagos and Abuja on FCCPC merger review practice, timelines and filing strategy.",
-    body: ["Our competition team shared practical guidance on notification thresholds, timetables and remedies."],
-    readMins: 3,
-  },
-  {
-    slug: "workforce-restructuring-checklist",
-    title: "Restructuring your workforce: a legal checklist for employers",
-    type: "Insight",
-    date: "2026-05-20",
-    author: "zainab-bello",
-    practices: ["employment-immigration"],
-    summary: "Consultation, redundancy benefits and the litigation risks to manage before you announce.",
-    body: [
-      "Nigerian law requires employers to inform unions and employee representatives and to apply the 'last in, first out' principle, subject to merit and other factors.",
-      "This checklist covers the steps to take before, during and after a restructuring.",
-    ],
-    readMins: 6,
+    readMins: 13,
   },
 ];
 
-export const insightTypes: InsightType[] = ["Insight", "News", "Deal", "Report", "Podcast", "Event"];
+const allTypes: InsightType[] = ["Insight", "News", "Deal", "Report", "Podcast", "Event"];
+/** Only the types that have at least one published item, so filters never lead nowhere. */
+export const insightTypes = allTypes.filter((t) => insights.some((x) => x.type === t));
 export const getInsight = (slug: string) => insights.find((x) => x.slug === slug);
 export const sortedInsights = [...insights].sort((a, b) => b.date.localeCompare(a.date));
 export const formatDate = (iso: string) =>

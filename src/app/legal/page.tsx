@@ -35,6 +35,7 @@ export default function Legal() {
           </a>
           .
         </p>
+        <p>Flying Tesla Roadster image in “Who regulates a car that flies?”: Tesla, Inc.</p>
         <h2 id="accessibility">Accessibility</h2>
         <p>We aim to meet WCAG 2.2 AA. If anything on this site is difficult to use, please let us know.</p>
       </section>

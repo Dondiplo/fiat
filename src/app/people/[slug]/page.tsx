@@ -24,7 +24,6 @@ export default async function PersonPage({ params }: Props) {
   if (!person) notFound();
 
   const practices = person.practices.map(getPractice).filter((x) => x !== undefined);
-  const firstName = person.name.split(" ").slice(-2, -1)[0] ?? person.name;
 
   return (
     <>
@@ -42,7 +41,7 @@ export default async function PersonPage({ params }: Props) {
               </div>
             )}
             <Link href="/contact" className="btn reveal reveal-delay-2 mt-8 bg-navy-900 text-white hover:bg-navy-700">
-              Contact {firstName} <ArrowRight className="size-4" />
+              Contact {person.shortName} <ArrowRight className="size-4" />
             </Link>
           </div>
           {person.photo && (
@@ -82,7 +81,7 @@ export default async function PersonPage({ params }: Props) {
         </aside>
       </div>
 
-      <CtaBand title={`Speak to ${firstName} about your matter.`} />
+      <CtaBand title={`Speak to ${person.shortName} about your matter.`} />
     </>
   );
 }

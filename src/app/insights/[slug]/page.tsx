@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Avatar, Breadcrumbs, CtaBand, InsightCard } from "@/components/ui";
@@ -39,21 +40,27 @@ export default async function InsightPage({ params }: Props) {
             <h1 className="display-lg mt-5 text-navy-900">{insight.title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-muted">{insight.summary}</p>
             {author && (
-              <div className="mt-8 inline-flex items-center gap-3">
-                <Avatar name={author.name} size="sm" />
+              <Link href={`/people/${author.slug}`} className="mt-8 inline-flex items-center gap-3">
+                <Avatar name={author.name} photo={author.photo} size="sm" />
                 <span className="text-sm leading-tight">
                   <span className="block font-semibold text-navy-900">{displayName(author)}</span>
                   <span className="text-muted">{author.role}</span>
                 </span>
-              </div>
+              </Link>
             )}
           </div>
         </header>
         <div className="container-x max-w-4xl py-12 sm:py-16">
+          {insight.image && (
+            <figure className="mb-10 sm:mb-14">
+              <div className="relative aspect-video overflow-hidden rounded-sm bg-navy-900">
+                <Image src={insight.image.src} alt={insight.image.alt} fill priority sizes="(min-width: 896px) 864px, 100vw" placeholder="blur" className="object-cover" />
+              </div>
+              {insight.image.credit && <figcaption className="mt-2 text-xs text-muted">{insight.image.credit}</figcaption>}
+            </figure>
+          )}
           <div data-reveal className="prose-firm max-w-[68ch] text-[1.0625rem]">
-            {insight.body.map((b) => (
-              <p key={b}>{b}</p>
-            ))}
+            {insight.body.map((b) => (b.startsWith("## ") ? <h2 key={b}>{b.slice(3)}</h2> : <p key={b}>{b}</p>))}
           </div>
           {tags.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-2 border-t border-line pt-6">
@@ -72,16 +79,18 @@ export default async function InsightPage({ params }: Props) {
         </div>
       </article>
 
-      <section className="bg-mist/60">
-        <div className="container-x py-14 sm:py-20">
-          <p className="eyebrow">More insights</p>
-          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {more.map((x) => (
-              <InsightCard key={x.slug} insight={x} />
-            ))}
+      {more.length > 0 && (
+        <section className="bg-mist/60">
+          <div className="container-x py-14 sm:py-20">
+            <p className="eyebrow">More insights</p>
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {more.map((x) => (
+                <InsightCard key={x.slug} insight={x} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <CtaBand />
     </>
   );

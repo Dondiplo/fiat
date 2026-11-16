@@ -139,14 +139,16 @@ export default function Home() {
       {/* Insights */}
       <section className="bg-mist/60">
         <div className="container-x py-16 sm:py-24">
-          <SectionHeading eyebrow="Insights" title="Latest thinking, news and deals." action={{ label: "All insights", href: "/insights" }} />
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <SectionHeading eyebrow="Insights" title="Latest thinking from our lawyers." action={{ label: "All insights", href: "/insights" }} />
+          <div className={`mt-10 grid gap-5 ${rest.length ? "lg:grid-cols-2" : "max-w-3xl"}`}>
             <InsightCard insight={lead} featured />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
-              {rest.slice(0, 2).map((x) => (
-                <InsightCard key={x.slug} insight={x} />
-              ))}
-            </div>
+            {rest.length > 0 && (
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+                {rest.slice(0, 2).map((x) => (
+                  <InsightCard key={x.slug} insight={x} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
