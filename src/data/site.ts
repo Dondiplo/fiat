@@ -1,5 +1,4 @@
-// Firm-wide details. Phone numbers are placeholders; replace them with the
-// firm's real numbers before launch. The firm publishes no physical address.
+// Firm-wide details. The firm publishes no physical address.
 
 export const site = {
   name: "Fiat Justitia Attorneys",
@@ -22,12 +21,12 @@ export type Office = {
 export const offices: Office[] = [
   {
     city: "Lagos",
-    phone: "+234 (0) 1 000 0000",
+    phone: "+234 708 691 0449",
     hours: "Mon–Fri, 8:00–18:00 WAT",
   },
   {
     city: "Abuja",
-    phone: "+234 (0) 9 000 0000",
+    phone: "+234 708 691 0449",
     hours: "Mon–Fri, 8:00–17:30 WAT",
   },
 ];
@@ -38,5 +37,5 @@ export const mainNav = [
   { label: "Insights", href: "/insights" },
 ];
 
-/** "+234 (0) 1 000 0000" -> "tel:+23410000000" (drops the domestic trunk 0). */
+/** "+234 708 691 0449" -> "tel:+23410000000" (drops the domestic trunk 0). */
 export const tel = (phone: string) => `tel:${phone.replace("(0)", "").replace(/[^\d+]/g, "")}`;
