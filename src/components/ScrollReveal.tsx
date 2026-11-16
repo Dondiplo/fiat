@@ -48,7 +48,9 @@ export function ScrollReveal() {
           io.unobserve(el);
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      // threshold 0, not a ratio: a block taller than ~8 screens (a long article)
+      // can never be 12% visible, so it would stay hidden forever.
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
     );
 
     const scan = () => document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-visible)").forEach((el) => io.observe(el));
