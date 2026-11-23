@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function InsightPage({ params }: Props) {
   const insight = getInsight((await params).slug);
   if (!insight) notFound();
-  const author = getPerson(insight.author);
+  const authors = insight.authors.map(getPerson).filter((x) => x !== undefined);
   const more = sortedInsights.filter((x) => x.slug !== insight.slug).slice(0, 3);
   const tags = insight.practices.map(getPractice).filter((x) => x !== undefined);
 
@@ -39,14 +39,18 @@ export default async function InsightPage({ params }: Props) {
             </div>
             <h1 className="display-lg mt-5 text-navy-900">{insight.title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-muted">{insight.summary}</p>
-            {author && (
-              <Link href={`/people/${author.slug}`} className="mt-8 inline-flex items-center gap-3">
-                <Avatar name={author.name} photo={author.photo} size="sm" />
-                <span className="text-sm leading-tight">
-                  <span className="block font-semibold text-navy-900">{displayName(author)}</span>
-                  <span className="text-muted">{author.role}</span>
-                </span>
-              </Link>
+            {authors.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+                {authors.map((author) => (
+                  <Link key={author.slug} href={`/people/${author.slug}`} className="inline-flex items-center gap-3">
+                    <Avatar name={author.name} photo={author.photo} size="sm" />
+                    <span className="text-sm leading-tight">
+                      <span className="block font-semibold text-navy-900">{displayName(author)}</span>
+                      <span className="text-muted">{author.role}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
             )}
           </div>
         </header>
@@ -60,8 +64,22 @@ export default async function InsightPage({ params }: Props) {
             </figure>
           )}
           <div data-reveal className="prose-firm max-w-[68ch] text-[1.0625rem]">
-            {insight.body.map((b) => (b.startsWith("## ") ? <h2 key={b}>{b.slice(3)}</h2> : <p key={b}>{b}</p>))}
+            {insight.body.map((b) =>
+              b.startsWith("### ") ? <h3 key={b}>{b.slice(4)}</h3> : b.startsWith("## ") ? <h2 key={b}>{b.slice(3)}</h2> : <Paragraph key={b} text={b} />,
+            )}
           </div>
+          {insight.references && (
+            <section className="mt-12 border-t border-line pt-8">
+              <h2 className="eyebrow">References</h2>
+              <ol className="mt-4 space-y-2 text-sm leading-relaxed break-words text-muted">
+                {insight.references.map((r) => (
+                  <li key={r}>
+                    <Linkified text={r} />
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
           {tags.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-2 border-t border-line pt-6">
               {tags.map((t) => (
@@ -93,5 +111,29 @@ export default async function InsightPage({ params }: Props) {
       )}
       <CtaBand />
     </>
+  );
+}
+
+/** A paragraph that may open with a bold lead-in: "**Lead-in:** rest". */
+function Paragraph({ text }: { text: string }) {
+  const m = text.match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
+  if (!m) return <p>{text}</p>;
+  return (
+    <p>
+      <strong className="font-semibold text-navy-900">{m[1]}</strong> {m[2]}
+    </p>
+  );
+}
+
+/** Turns bare URLs in a citation into links that open in a new tab. */
+function Linkified({ text }: { text: string }) {
+  return text.split(/(https?:\/\/\S+)/).map((part, i) =>
+    i % 2 ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold underline-offset-2 hover:text-navy-700">
+        {part}
+      </a>
+    ) : (
+      part
+    ),
   );
 }

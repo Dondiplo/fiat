@@ -89,7 +89,7 @@ export function Avatar({ name, photo, size = "md" }: { name: string; photo?: Per
 }
 
 export function InsightCard({ insight, featured = false }: { insight: Insight; featured?: boolean }) {
-  const author = getPerson(insight.author);
+  const authors = insight.authors.map(getPerson).filter((x) => x !== undefined);
   return (
     <article data-reveal className={`group relative flex h-full flex-col overflow-hidden rounded-sm border border-line bg-white transition hover:border-navy-900/40 hover:shadow-[0_18px_40px_-24px_rgba(11,31,77,0.35)] ${featured ? "p-6 sm:p-10" : "p-5 sm:p-6"}`}>
       {insight.image && (
@@ -109,14 +109,18 @@ export function InsightCard({ insight, featured = false }: { insight: Insight; f
         </Link>
       </h3>
       <p className={`mt-3 leading-relaxed text-muted ${featured ? "line-clamp-4 text-sm sm:line-clamp-none sm:text-lg" : "line-clamp-3 text-sm"}`}>{insight.summary}</p>
-      {author && (
-        <div className="mt-auto flex items-center gap-3 pt-6">
-          <Avatar name={author.name} photo={author.photo} size="sm" />
-          <div className="text-sm leading-tight">
-            <p className="font-semibold text-navy-900">{displayName(author)}</p>
-            <p className="text-muted">{author.role}</p>
-          </div>
-        </div>
+      {authors.length > 0 && (
+        <ul className="mt-auto grid gap-3 pt-6">
+          {authors.map((author) => (
+            <li key={author.slug} className="flex items-center gap-3">
+              <Avatar name={author.name} photo={author.photo} size="sm" />
+              <div className="text-sm leading-tight">
+                <p className="font-semibold text-navy-900">{displayName(author)}</p>
+                <p className="text-muted">{author.role}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </article>
   );
