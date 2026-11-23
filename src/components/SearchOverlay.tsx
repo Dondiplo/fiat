@@ -6,7 +6,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { search } from "@/lib/search";
 import { ArrowRight, Close, Search } from "./icons";
 
-const popular = ["Corporate & M&A", "Divorce", "Property", "Criminal Defence", "Dispute Resolution", "Wills", "Tax", "Immigration"];
+const popular = ["Corporate", "Divorce", "Property", "Criminal Defence", "Dispute Resolution", "Wills", "Intellectual Property", "Entertainment"];
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   // Mounting the panel only while open gives each search a fresh state.

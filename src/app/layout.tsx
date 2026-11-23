@@ -14,7 +14,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: { default: `${site.name}: ${site.tagline}`, template: `%s | ${site.shortName}` },
-  description: "Fiat Justitia Attorneys is a full-service Nigerian law firm advising businesses, institutions, families and individuals from Lagos and Abuja.",
+  description: "Fiat Justitia Attorneys is a full-service Nigerian law firm advising businesses, institutions, families and individuals from Lagos, Abuja and Port Harcourt.",
 };
 
 export const viewport: Viewport = {

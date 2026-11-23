@@ -29,6 +29,11 @@ export const offices: Office[] = [
     phone: "+234 913 008 0833",
     hours: "Mon–Fri, 8:00–17:30 WAT",
   },
+  {
+    city: "Port Harcourt",
+    phone: "+234 913 008 0833",
+    hours: "Mon–Fri, 8:00–17:30 WAT",
+  },
 ];
 
 export const mainNav = [

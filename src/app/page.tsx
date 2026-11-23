@@ -95,7 +95,7 @@ export default function Home() {
           <Image src={ladyJustice} alt="" fill sizes="100vw" placeholder="blur" quality={70} className="object-cover object-[50%_30%] opacity-[0.24]" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
         </div>
-        <ExpertiseFlow items={featured.map(({ slug, name, summary }) => ({ slug, name, summary }))} total={practices.length} />
+        <ExpertiseFlow items={featured.map(({ slug, name, summary, card }) => ({ slug, ...(card ?? { name, summary }) }))} total={practices.length} />
       </section>
 
       {/* Promise */}

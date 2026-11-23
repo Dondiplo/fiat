@@ -39,7 +39,7 @@ export function Footer() {
             <LogoFull className="h-auto w-40 sm:w-48 lg:w-52" />
           </div>
           <p data-reveal className="mt-5 max-w-sm text-sm leading-relaxed text-muted lg:max-w-xs">
-            A full-service Nigerian law firm advising businesses, institutions, families and individuals from Lagos and Abuja.
+            A full-service Nigerian law firm advising businesses, institutions, families and individuals from Lagos, Abuja and Port Harcourt.
           </p>
           <div data-reveal className="mt-5 flex gap-2">
             {social.map(({ href, label, Icon }) => (

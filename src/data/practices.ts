@@ -8,12 +8,13 @@ export type Practice = {
   services: string[];
   related: string[];
   featured?: boolean;
+  card?: { name: string; summary: string }; // homepage card text, when it differs from the page
 };
 
 export const practices: Practice[] = [
   {
     slug: "corporate-m-and-a",
-    name: "Corporate & M&A",
+    name: "Corporate",
     featured: true,
     summary: "Public and private acquisitions, joint ventures and reorganisations, run from term sheet to completion.",
     overview: [
@@ -71,7 +72,6 @@ export const practices: Practice[] = [
   {
     slug: "tax",
     name: "Tax",
-    featured: true,
     summary: "Tax planning, transaction structuring and disputes, including implementation of Nigeria's 2025 tax reforms.",
     overview: [
       "Tax affects nearly every transaction we work on. Our tax team works alongside our deal lawyers on structuring, and advises clients directly on compliance, incentives and disputes.",
@@ -176,6 +176,11 @@ export const practices: Practice[] = [
   {
     slug: "intellectual-property",
     name: "Intellectual Property",
+    featured: true,
+    card: {
+      name: "Intellectual Property & Entertainment",
+      summary: "Copyright, trade marks and brand protection, and the music, film and talent deals behind Nigeria’s creative industries.",
+    },
     summary: "Brand protection, IP infringement claims, patents, copyright and technology transfer.",
     overview: [
       "We protect and enforce clients' trade marks, patents, designs and copyright, and register technology transfer agreements with NOTAP.",
