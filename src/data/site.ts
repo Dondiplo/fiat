@@ -4,11 +4,11 @@ export const site = {
   name: "Fiat Justitia Attorneys",
   shortName: "Fiat Justitia",
   tagline: "Let justice be done",
-  email: "info@fiatjustitia.com",
+  email: "fiatjustitia@gmail.com",
   social: {
     linkedin: "https://www.linkedin.com/",
     x: "https://x.com/",
-    instagram: "https://www.instagram.com/",
+    instagram: "https://www.instagram.com/fiatjustitia_attorneys",
   },
 };
 
@@ -26,7 +26,7 @@ export const offices: Office[] = [
   },
   {
     city: "Abuja",
-    phone: "+234 708 691 0449",
+    phone: "+234 913 008 0833",
     hours: "Mon–Fri, 8:00–17:30 WAT",
   },
 ];
@@ -37,5 +37,5 @@ export const mainNav = [
   { label: "Insights", href: "/insights" },
 ];
 
-/** "+234 708 691 0449" -> "tel:+23410000000" (drops the domestic trunk 0). */
+/** "+234 (0) 1 000 0000" -> "tel:+23410000000" (drops the domestic trunk 0). */
 export const tel = (phone: string) => `tel:${phone.replace("(0)", "").replace(/[^\d+]/g, "")}`;
